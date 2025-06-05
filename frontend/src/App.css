@@ -1,0 +1,184 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f8fb;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.container {
+  max-width: 550px;
+  width: 100%;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  margin-top: 10px;
+  display: block;
+}
+
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background: #3498db;
+  cursor: pointer;
+  transition: 0.3s;
+  user-select: none;
+}
+
+button:hover:not(:disabled) {
+  background: #2c80b4;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.print-btn {
+  background: #8e44ad;
+}
+
+.bill-section {
+  margin-top: 10px;
+}
+
+.bill-item {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr auto;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  background: #ffffff;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.bill-item:hover {
+  background-color: #f0f8ff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.bill-item-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #2c3e50;
+  user-select: none;
+}
+
+.bill-item input[type="number"] {
+  width: 60px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1.5px solid #3498db;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.bill-item input[type="number"]:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 6px #2980b9;
+}
+
+.bill-item > div:nth-child(3) {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #27ae60;
+  user-select: none;
+}
+
+.remove-btn {
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.remove-btn:hover {
+  background: #c0392b;
+}
+
+.summary {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #34495e;
+}
+
+.total {
+  font-size: 1.3rem;
+  color: #27ae60;
+  font-weight: 700;
+}
+
+.error {
+  background: #ffe6e6;
+  color: #c0392b;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 600;
+  user-select: none;
+}
+
+.empty {
+  font-style: italic;
+  color: #7f8c8d;
+  text-align: center;
+}
