@@ -27,4 +27,3 @@ A simple billing application built using **React** and **Flask**, with a **SQLit
 
 ---
 
-Let me know if you'd like to add local setup steps, screenshots, or backend deployment instructions!
