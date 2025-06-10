@@ -4,7 +4,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-# Allow all origins (for development)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 DATABASE = 'billing.db'
@@ -27,6 +26,10 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
+@app.route("/")
+def home():
+    return "Billing API is running!"
 
 @app.route("/items", methods=["GET"])
 def get_items():
@@ -64,6 +67,5 @@ def submit_bill():
 
 if __name__ == "__main__":
     init_db()
-    # Use the PORT provided by Render, or default to 5000 locally
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
