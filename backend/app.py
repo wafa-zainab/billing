@@ -1,9 +1,11 @@
+import os
 import sqlite3
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+# Allow all origins (for development)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 DATABASE = 'billing.db'
 
@@ -45,26 +47,23 @@ def submit_bill():
             return jsonify({"error": "No items provided"}), 400
 
         total = sum(item['price'] * item['quantity'] for item in items)
-
         conn = get_connection()
         cursor = conn.cursor()
-
         for item in items:
             cursor.execute(
                 "INSERT INTO bills (item, quantity, price) VALUES (?, ?, ?)",
                 (item['name'], item['quantity'], item['price'])
             )
-
         conn.commit()
         cursor.close()
         conn.close()
-
         return jsonify({"message": "Bill submitted", "total": total})
-
     except Exception as e:
         print("Error:", e)
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     init_db()
-    app.run(host="0.0.0.0", port=10000)
+    # Use the PORT provided by Render, or default to 5000 locally
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
