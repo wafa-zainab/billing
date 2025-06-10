@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [items, setItems] = useState({});
   const [selectedItem, setSelectedItem] = useState("");
@@ -17,7 +19,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/items")
+    fetch(`${BASE_URL}/items`)
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -69,7 +71,7 @@ function App() {
     }
 
     setIsSubmitting(true);
-    fetch("http://localhost:5000/submit-bill", {
+    fetch(`${BASE_URL}/submit-bill`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ items: bill }),
@@ -91,7 +93,10 @@ function App() {
       .finally(() => setIsSubmitting(false));
   };
 
-  const subTotal = bill.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const subTotal = bill.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
   const tax = +(subTotal * 0.18).toFixed(2);
   const grandTotal = +(subTotal + tax).toFixed(2);
 
@@ -118,20 +123,26 @@ function App() {
         type="number"
         min="1"
         value={quantity}
-        onChange={(e) => setQuantity(Number(e.target.value))}
+        onChange={(e) => {
+          const val = Number(e.target.value);
+          if (val >= 1) setQuantity(val);
+        }}
       />
 
       <div className="buttons-row">
         <button onClick={addItem} disabled={!selectedItem || quantity < 1}>
           ➕ Add
         </button>
-        <button onClick={submitBill} disabled={bill.length === 0 || isSubmitting}>
+        <button
+          onClick={submitBill}
+          disabled={bill.length === 0 || isSubmitting}
+        >
           {isSubmitting ? "⏳ Submitting..." : "💼 Submit"}
         </button>
         <button onClick={clearBill} disabled={bill.length === 0}>
           ❌ Clear
         </button>
-        <button className="print-btn" onClick={() => window.print()}>
+        <button className="print-btn" onClick={() => window.print()} disabled={isSubmitting}>
           🖨 Print
         </button>
       </div>
@@ -151,10 +162,15 @@ function App() {
                   type="number"
                   min="1"
                   value={item.quantity}
-                  onChange={(e) => updateQuantity(index, Number(e.target.value))}
+                  onChange={(e) =>
+                    updateQuantity(index, Number(e.target.value))
+                  }
                 />
                 <div>₹{(item.quantity * item.price).toFixed(2)}</div>
-                <button onClick={() => removeItem(index)} className="remove-btn">
+                <button
+                  onClick={() => removeItem(index)}
+                  className="remove-btn"
+                >
                   &times;
                 </button>
               </div>
