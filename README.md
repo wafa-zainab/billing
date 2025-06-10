@@ -1,23 +1,31 @@
-# 🧾 Billing App
+🧾 Billing App
+A simple billing application built using React and Flask, with a SQLite backend. The frontend is deployed on Netlify.
 
-A simple billing application built using React and Flask, with a SQLite backend and deployed on Netlify.
+🚀 Live Demo
+🔗 https://billing-app-wafa.netlify.app
 
-## 🚀 Live Demo
+📦 Features
+Select items and set quantity
 
-🔗 [View App](https://billing1.netlify.app)
+Real-time bill calculation with subtotal, tax, and total
 
-## 📦 Features
+Modify or remove items from the bill
 
-- Select items and quantity
-- Dynamic bill generation with subtotal, tax, and total
-- Modify and remove items
-- Print the bill
-- Submit bill data to a Flask backend with SQLite
-- Responsive UI (mobile friendly)
+Print the bill
 
-## 🖼️ Tech Stack
+Submit bill data to a Flask backend with SQLite
 
-- Frontend: React.js
-- Backend: Flask (Python)
-- Database: SQLite
-- Deployment: Netlify (frontend)
+Mobile-friendly, responsive UI
+
+🖼️ Tech Stack
+Frontend: React.js (Vite)
+
+Backend: Flask (Python)
+
+Database: SQLite
+
+Deployment:
+
+Frontend: Netlify
+
+Backend: Flask server (e.g. Render)
